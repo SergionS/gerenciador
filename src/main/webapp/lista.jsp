@@ -1,8 +1,4 @@
-<%@page import="java.util.Collection"%>
-<%@page import="br.edu.ifsc.gerenciador.dao.EmpresaDAO"%>
-<%@page import="java.util.ArrayList"%>
-<%@page import="java.util.List"%>
-<%@ page import="br.edu.ifsc.gerenciador.model.Empresa" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
@@ -13,16 +9,11 @@
 <title>Insert title here</title>
 </head>
 <body>
-	Resultado da busca
+	Resultado da busca:
 	<ul>
-		<%
-		Collection<Empresa> empresas = (Collection<Empresa>) request.getAttribute("empresas");
-		
-		for( Empresa empresa : empresas ) { %>
-			<li><%= empresa.getId()%>: <%=empresa.getNome() %></li>
-		<%
-		}
-		%>
+		<c:forEach items="${empresas}" var="empresa" varStatus="status" >
+			<li>${status.index} => ${empresa.id}: ${empresa.nome}</li>
+		</c:forEach>
 	</ul>
 </body>
 </html>
