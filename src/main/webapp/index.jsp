@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -35,6 +37,8 @@
 	<form method="post" action="logout">
 		<input type="submit" value="Sair" />
 	</form>
+	<hr/>
+	<%= request.getAttribute("mensagem") %>
 	
 </body>
 </html>

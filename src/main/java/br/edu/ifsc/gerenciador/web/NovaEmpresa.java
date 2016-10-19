@@ -3,6 +3,7 @@ package br.edu.ifsc.gerenciador.web;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -38,8 +39,13 @@ public class NovaEmpresa extends HttpServlet {
 		
 		new EmpresaDAO().adiciona(empresa);
 		
-		PrintWriter printer = response.getWriter();
-		printer.println("<html><body>Empresa " + nome + " adicionada!</body></html>");
+		request.setAttribute("mensagem", "Empresa " + nome + " adicionada!");
+		
+		String pagina = "/index.jsp";
+		
+		RequestDispatcher dispatcher = request.getRequestDispatcher(pagina);
+		dispatcher.forward(request, response);
+
 	}
 
 }

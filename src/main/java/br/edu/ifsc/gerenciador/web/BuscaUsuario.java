@@ -36,7 +36,6 @@ public class BuscaUsuario extends HttpServlet {
 			writer.println("<li>" +usuario.getEmail() + "</li>");
 		}
 		
-		
 		writer.println("</body>");
 		writer.println("</html>");
 		

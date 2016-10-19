@@ -3,6 +3,7 @@ package br.edu.ifsc.gerenciador.web;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -36,11 +37,18 @@ public class NovoUsuario extends HttpServlet {
 		
 		String email = request.getParameter("email");
 		String senha = request.getParameter("senha");
+		
 		Usuario usuario = new Usuario(email,senha);
 		new UsuarioDAO().adiciona(usuario);
 		
-		PrintWriter printer = response.getWriter();
-		printer.println("<html><body>Usuario " + email + " adicionado!</body></html>");
+//		PrintWriter printer = response.getWriter();
+//		printer.println("<html><body>Usuario " + email + " adicionado!</body></html>");
+
+		request.setAttribute("mensagem", "Usuário " + email + " adicionado!");
+		String pagina = "/index.jsp";
+		RequestDispatcher dispatcher = request.getRequestDispatcher(pagina);
+		dispatcher.forward(request, response);
+
 	}
 
 }
